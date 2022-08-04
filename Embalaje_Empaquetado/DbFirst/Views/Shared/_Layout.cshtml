@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/css/style.default.css" rel="stylesheet">
+    <link href="~/Content/css/morris.css" rel="stylesheet">
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/sweetalert.min.css">
+    <link rel="stylesheet" href="~/Content/css/datatables.css" />
+    <link rel="stylesheet" href="~/Content/css/dataTables.responsive.css" />
+    <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <script src="~/Scripts/modernizr.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="headerwrapper">
+            <div class="header-left">
+                <a href="index.html" class="logo"><img style="width:110px; height:70px;" src="" alt="" /></a>
+                <div class="pull-right">
+                    <a href="" class="menu-collapse"><i class="fa fa-bars"></i></a>
+                </div>
+            </div><!-- header-left -->
+
+            <div class="header-right">
+                <div class="pull-right">
+                    <div class="btn-group btn-group-list btn-group-notification">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge" id="cantialert"></span>
+                        </button>
+                        <div class="dropdown-menu pull-right">
+                            <div id="div-cnt-alerta"></div>
+                        </div>
+                    </div><!-- btn-group -->
+
+                    <div class="btn-group btn-group-list btn-group-messages">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope-o"></i>
+                            <span class="badge">2</span>
+                        </button>
+                        <div class="dropdown-menu pull-right">
+                            <a href="" class="link-right"><i class="fa fa-plus"></i></a>
+                            <h5>New Messages</h5>
+                            <ul class="media-list dropdown-list">
+                                <li class="media">
+                                    <span class="badge badge-success">New</span>
+                                    <img class="img-circle pull-left noti-thumb" src="" alt="">
+                                    <div class="media-body">
+                                        <strong>Nusja Nawancali</strong>
+                                        <p>Hi! How are you?...</p>
+                                        <small class="date"><i class="fa fa-clock-o"></i> 15 minutes ago</small>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <div class="dropdown-footer text-center">
+                                <a href="" class="link">See All Messages</a>
+                            </div>
+                        </div><!-- dropdown-menu -->
+                    </div><!-- btn-group -->
+
+                    <div class="btn-group btn-group-option">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class="dropdown-menu pull-right" role="menu">
+                            <li><a href="#"><i class="glyphicon glyphicon-user"></i> Mis Datos</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#" onClick="delogin()"><i class="glyphicon glyphicon-log-out"></i>Cerrar Sesi&oacute;n</a></li>
+                        </ul>
+                    </div><!-- btn-group -->
+
+                </div><!-- pull-right -->
+
+            </div><!-- header-right -->
+        </div><!-- headerwrapper -->
+
+    </header>
+
+    <section>
+        <div class="mainwrapper">
+            <div class="leftpanel">
+                <div class="media profile-left">
+                    <a class="pull-left profile-thumb" href="profile.html">
+
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">Prueba</h4>
+                        <small class="text-muted">Prueba</small>
+                    </div>
+                </div><!-- media -->
+
+                <h5 class="leftpanel-title">Navigation</h5>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="parent"><a href=""><i class="fa fa-home"></i> <span>Principal</span></a></li>
+                    <li class="parent">
+                        <a href=""><i class="fa fa-edit"></i> <span>Maestros</span></a>
+                        <ul class="children">
+                            <li><a href="@Url.Action("Index","ORDRs")">Slider</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- leftpanel -->
+            @RenderBody()
+        </div><!-- mainwrapper -->
+    </section>
+
+
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/pace.min.js"></script>
+
+    <script src="~/Scripts/jquery.cookies.js"></script>
+
+    <script src="~/Scripts/jquery.sparkline.min.js"></script>
+    <script src="~/Scripts/morris.min.js"></script>
+    <script src="~/Scripts/raphael-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap-wizard.min.js"></script>
+    <script src="~/Scripts/select2.min.js"></script>
+
+    <script src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+
+
+</body>
+</html>
+
