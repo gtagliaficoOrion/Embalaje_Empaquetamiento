@@ -1,0 +1,219 @@
+﻿@model IEnumerable<DbFirst.Models.ODLN>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#tablelist').DataTable({
+            "ordering": false,
+            "searching": false,
+            "lengthChange": false,
+            "pageLength": 10,
+            "ajax": {
+                "url": "/ODLNs/GetProductos",
+                "type": "GET",
+                "datatype": "json",
+                "data": function (d) {
+                    d.DocNum = document.getElementById("docnum").value;
+                },
+            },
+            "rowCallback": function (row, data) {
+                if (data.Existencias > data.Quantity) {
+
+                    $($(row).find("td")[1]).css("background-color", "#89FFA7");
+                    $($(row).find("td")[2]).css("background-color", "#89FFA7");
+                    $($(row).find("td")[3]).css("background-color", "#89FFA7");
+                    $($(row).find("td")[4]).css("background-color", "#89FFA7");
+                    $($(row).find("td")[5]).css("background-color", "#89FFA7");
+                    $($(row).find("td")[6]).css("background-color", "#89FFA7");
+                }
+                else {
+                    if (data.Existencias < data.Quantity) {
+                        $($(row).find("td")[1]).css("background-color", "#FF8989");
+                        $($(row).find("td")[2]).css("background-color", "#FF8989");
+                        $($(row).find("td")[3]).css("background-color", "#FF8989");
+                        $($(row).find("td")[4]).css("background-color", "#FF8989");
+                        $($(row).find("td")[5]).css("background-color", "#FF8989");
+                        $($(row).find("td")[6]).css("background-color", "#FF8989");
+                    }
+                }
+            },
+            "columns": [
+                {
+                    "data": "Active",
+                    render: function (value) {
+                        if (value == true) {
+                            return '<input type="checkbox" disabled>';
+
+                        }
+                        else {
+                            return '<input type="checkbox" class="editor-active">';
+
+                        }
+                    },
+                    className: "dt-body-center"
+                },
+                { "data": "ItemCode" },
+                { "data": "Dscription" },
+                { "data": "Quantity" },
+                { "data": "Price" },
+                { "data": "TaxCode" },
+                { "data": "Existencias" }
+            ]
+        });
+
+    });
+    function butonprod(DocNum) {
+
+        document.getElementById("docnum").value = DocNum;
+        $('#tablelist').DataTable().ajax.reload();
+        document.getElementById("tablelist1").style.display = "block";
+
+    };
+    @*function GetSelected() {
+        //Reference the GridView.
+        var grid = document.getElementById("tablelist");
+
+        //Reference the CheckBoxes in GridView.
+        var checkBoxes = grid.getElementsByTagName("INPUT");
+        var message = "Id  Name                  Country\n";
+        var codigo = "";
+        var cantidad = 0;
+        //Loop through the CheckBoxes.
+        for (var i = 0; i < checkBoxes.length; i++) {
+            if (checkBoxes[i].checked) {
+                var row = checkBoxes[i].parentNode.parentNode;
+
+                if (codigo) { codigo = codigo + "," + row.cells[1].innerHTML; }
+                else { codigo = row.cells[1].innerHTML; }
+                cantidad++;
+            }
+        }
+
+        //Display selected Row data in Alert Box.
+        $.ajax({
+            url: "@Url.Action("Getpruebagrid", "ODLNs")",
+            datatype: "JSON",
+            data: { cantidad: cantidad, lts: codigo },
+                type: "GET"
+              }).done(function (resp){
+
+              }).fail(function (){
+
+              });
+    }*@
+
+</script>
+
+<div class="mainpanel">
+
+    <div class="pageheader">
+        <div class="media">
+            <div class="pageicon pull-left">
+                <i class="fa fa-pencil"></i>
+            </div>
+            <
+            <div class="media-body">
+                <ul class="breadcrumb">
+                    <li><a href=""><i class="glyphicon glyphicon-home"></i></a></li>
+                    <li><a href="<?php echo base_url().'Cadmin';?>">Principal</a></li>
+                    <li>Lista de Pedidos</li>
+                </ul>
+                <h4>Lista de Órdenes de Entrega</h4>
+            </div>
+        </div><!-- media -->
+    </div><!-- pageheader -->
+
+    <div class="contentpanel">
+
+        <div class="col-md-12">
+
+            <h2 class="text-center">Órdenes de Entrega</h2>
+
+            <table class="table text-center table-hover table-bordered">
+                <thead class="bg-info">
+                    <tr>
+                        <th class="text-center">
+                            CÉDULA O RIF
+                        </th>
+                        <th class="text-center">
+                            NOMBRE
+                        </th>
+                        <th class="text-center">
+                            NÚMERO DE FACTURA
+                        </th>
+                        <th class="text-center">
+                            FECHA DE REALIZACIÓN DEL PEDIDO
+                        </th>
+                        <th class="text-center">
+                            FECHA DE ENTREGA DEL PEDIDO
+                        </th>
+                        <th></th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CardCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CardName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DocNum)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DocDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DocDueDate)
+                            </td>
+
+                            <td>
+                                <button href="javascript:void(0)" onclick="butonprod('@Html.DisplayFor(modelItem => item.DocNum)')">Ver</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+
+
+        <div style="display:none" id="tablelist1" class="col-md-12">
+            <input type="hidden" id="docnum" name="docnum" value="0" />
+            <table id="tablelist" class="table text-center table-hover table-bordered" style="color:black">
+                <thead class="text-center">
+                    <tr>
+                        <th></th>
+                        <th>CÓDIGO DE ARTICULO</th>
+                        <th>NOMBRE ARTÍCULO</th>
+                        <th>CANTIDAD</th>
+                        <th>PRECIO</th>
+                        <th>IMPUESTO</th>
+                        <th>EXISTENCIAS</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="col-xs-12 col-sm-4">
+
+        </div>
+        <div class="col-xs-12 col-sm-4">
+            <a href=" @Url.Action("Index","RDR1")"><button onclick="GetSelected()" class="btn-primary width100p" type="submit" style="text-decoration:solid" value="aceptar"><h5>CREAR ORDEN DE ENTREGA</h5></button></a>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+        </div>
+
+    </div>
+
+

@@ -130,6 +130,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ODLNsController.cs" />
     <Compile Include="Controllers\ORDRsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,6 +258,11 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
+    <Content Include="Views\ODLNs\Create.cshtml" />
+    <Content Include="Views\ODLNs\Delete.cshtml" />
+    <Content Include="Views\ODLNs\Details.cshtml" />
+    <Content Include="Views\ODLNs\Edit.cshtml" />
+    <Content Include="Views\ODLNs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="SAPbobsCOM">

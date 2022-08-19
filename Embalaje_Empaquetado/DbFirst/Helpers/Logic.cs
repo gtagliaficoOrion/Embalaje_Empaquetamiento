@@ -43,6 +43,7 @@ namespace DbFirst.Helpers
                 r.ItemCode = item.ItemCode;
                 r.OnHand = item.OnHand;
                 r.WhsCode = item.WhsCode;
+                
             }
             return r;
         }
