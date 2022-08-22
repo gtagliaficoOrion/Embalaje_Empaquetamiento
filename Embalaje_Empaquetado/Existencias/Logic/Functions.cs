@@ -19,6 +19,7 @@ namespace Existencias.Logic
             Respuesta res = new Respuesta();
             OITW r = new OITW();
             var oOITW = context.OITW.Where(p => p.ItemCode == CodProd && whsCode == p.WhsCode);
+            var oOITM = context.OITM.FirstOrDefault(o => o.ItemCode == CodProd);
             foreach (var item in oOITW)
             {
                 r.ItemCode = item.ItemCode;

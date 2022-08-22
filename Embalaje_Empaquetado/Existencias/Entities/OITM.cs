@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace Existencias.Entities
 {
-    public class Respuesta
+    public class OITM
     {
         public string ItemCode { get; set; }
-        public string WhsCode { get; set; }
-        public decimal Quantity { get; set; }
-        public string NombreProd { get; set; }
-
+        public string ItemName { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace Existencias.Context
         }
 
         public DbSet<OITW> OITW { get; set; }
+        public DbSet<OITM> OITM { get; set; }
     }
 }
